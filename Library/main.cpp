@@ -22,7 +22,6 @@ vector<User> UserBase = {
 };
 
 void menuSettings() {
-    system("cls");
     cout << "Press x to close the program\nPress t to list books\nPress s to search for a specific book by title\nPress c to clear the window\nPress r to return a book\nPress l to lend a book by it's number\n>#: ";
 }
 
@@ -31,7 +30,7 @@ int main()
     char userEntry = 'p';
     bool notLogged = false;
     string name, password;
-    while(!notLogged) {
+    /**while(!notLogged) {
         cout << "Login or Sign up: (l for login s for signup): ";
         cin>> userEntry;
         switch(userEntry) {
@@ -51,18 +50,28 @@ int main()
             UserBase.push_back(User(name,password));
             notLogged = true;
         }
-    }
+    }**/
     while(true) {
         menuSettings();
         cin>>userEntry;
         switch(userEntry) {
         case 'x':
-            return 0l;
+            return 0;
+            break;
         case 'c':
-            menuSettings();
+            system("cls");
             break;
         case 't':
             listBooks(BookBase);
+            break;
+        case 's':
+            //search by title
+            break;
+        case 'r':
+            returnABook(UserBase.at(0), BookBase);
+            break;
+        case 'l':
+            lendABook(UserBase.at(0), BookBase);
             break;
         }
     }

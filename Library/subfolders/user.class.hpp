@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include "book.class.hpp"
 
 using namespace std;
@@ -10,40 +11,74 @@ class User
 public:
     string name;
     string password;
-    vector<Book> lentBooks;
-    vector<Book> readBooks;
+    vector<int> lentBooks;
+    vector<int> readBooks;
 
     User(string name, string password) {
         this->name = name;
         this->password = password;
     }
 
-    int lendBook(vector<Book> &bookBase, int index) {
+    int lendBook(vector<Book> bookBase, int index) {
         if(index >= 0 && index < bookBase.size()) {
             bookBase.at(index).isLent = true;
-            this->lentBooks.push_back(bookBase.at(index));
-            this->readBooks.push_back(bookBase.at(index));
+            this->lentBooks.push_back(index);
+            this->readBooks.push_back(index);
+            this->listUserBooks(bookBase);
             return 0;
         } else {
             return -1;
         }
     }
 
-    int returnBook(int index, vector<Book> &bookBase) {
-        if(index >= 0 && index < this->lentBooks.size()) {
-            bookBase.at(findBookByTitle(this->lentBooks.at(index).title, bookBase)).isLent = false;
-            this->lentBooks.erase(lentBooks.begin() + index);
-            return 0;
+    int returnBook(int index, vector<Book> bookBase) {
+        if(index < 0 || index >= this->lentBooks.size()) {
+            return -1;
         }
+
+        bookBase.at(this->lentBooks.at(index)).isLent = false;
+        this->lentBooks.erase(this->lentBooks.begin() + index);
+        return 0;
     }
 
+
+    string listUserBooks(vector<Book> BookBase) {
+        string returnString;
+        for (int i; i < this->lentBooks.size(); i++) {
+            returnString += "|" + to_string(i+1) + "| |" + BookBase.at(this->lentBooks.at(i)).title + "| |" + BookBase.at(this->lentBooks.at(i)).author + "|\n";
+        }
+        return returnString;
+    }
 };
 
-tryLogging(string login, string password, vector<User> &userBase) {
+int tryLogging(string login, string password, vector<User> &userBase) {
     for (int i = 0; i < userBase.max_size(); i++) {
         if(login == userBase.at(i).name && password == userBase.at(i).password) {
             return 1;
         }
     }
     return 0;
+}
+
+int returnABook(User user, vector<Book> bookBase) {
+    int bookNumber;
+    int success = 1;
+    cout << user.listUserBooks(bookBase);
+    cout << "Which book do you want to return?\n(give the number)>>";
+    cin>>bookNumber;
+    if(bookNumber == 0) {
+        return 0;
+    }
+    user.returnBook(bookNumber-1, bookBase);
+}
+
+void lendABook(User user, vector<Book> bookBase) {
+   listBooks(bookBase);
+   int bookIndex;
+   cout << "\nInput the book number you want to lend\n(number 0 leaves the lending selection)>> ";
+   cin >> bookIndex;
+   if(bookIndex == 0) {
+        return;
+   }
+   user.lendBook(bookBase, bookIndex-1);
 }

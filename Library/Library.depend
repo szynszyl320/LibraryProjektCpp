@@ -1,15 +1,16 @@
 # depslib dependency file v1.0
-1744033321 source:c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\main.cpp
+1744637424 source:c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\main.cpp
 	<iostream>
 	<vector>
 	"subfolders/user.class.hpp"
 
-1744032161 c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\subfolders\user.class.hpp
+1744637931 c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\subfolders\user.class.hpp
 	<iostream>
 	<vector>
+	<string>
 	"book.class.hpp"
 
-1744033264 c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\subfolders\book.class.hpp
+1744636585 c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\subfolders\book.class.hpp
 	<iostream>
 
 1744030438 c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\subfolders\helper.function.hpp

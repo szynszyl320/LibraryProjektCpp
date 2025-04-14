@@ -28,7 +28,7 @@ int findBookByTitle(string title, vector<Book> &bookBase) {
 }
 
 void listBooks(vector<Book> &bookBase) {
-    for(int i = 0; i < bookBase.max_size(); i++) {
-        cout << "|" << i+1 << "| |" << bookBase.at(i).title << "| |" << bookBase.at(i).author << "| |" << bookBase.at(i).genre << (bookBase.at(i).isLent == true)? "not avaliable\n" : "available\n";
+    for(int i = 0; i < bookBase.size(); i++) {
+        cout << "|" << i+1 << "| |" << bookBase.at(i).title << "| |" << bookBase.at(i).author << "| |" << bookBase.at(i).genre << ((bookBase.at(i).isLent)? "| |not avaliable|\n" : "| |available|\n");
     }
 }
