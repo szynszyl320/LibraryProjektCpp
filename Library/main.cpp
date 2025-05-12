@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "subfolders/user.class.hpp"
+#include "subfolders/fileManagment.class.hpp"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ vector<Book> BookBase = {
 };
 
 vector<User> UserBase = {
+    User("test", "zaq"),
     User("tester", "zaq1@WSX")
 };
 
@@ -30,6 +32,7 @@ int main()
     char userEntry = 'p';
     bool notLogged = false;
     string name, password;
+    int userId;
     /**while(!notLogged) {
         cout << "Login or Sign up: (l for login s for signup): ";
         cin>> userEntry;
@@ -39,7 +42,7 @@ int main()
             cin>> name;
             cout << "Give password: ";
             cin>> password;
-            notLogged = tryLogging(name, password, UserBase);
+            notLogged = tryLogging(name, password, UserBase, userId);
             break;
             cout << "User not found!";
         case 's':
@@ -51,11 +54,13 @@ int main()
             notLogged = true;
         }
     }**/
+    userId = 0;
     while(true) {
         menuSettings();
         cin>>userEntry;
         switch(userEntry) {
         case 'x':
+            saveFiles(BookBase, UserBase);
             return 0;
             break;
         case 'c':
@@ -65,13 +70,13 @@ int main()
             listBooks(BookBase);
             break;
         case 's':
-            //search by title
+            findBookByTitle(BookBase);
             break;
         case 'r':
-            returnABook(UserBase.at(0), BookBase);
+            returnABook(UserBase.at(userId), BookBase);
             break;
         case 'l':
-            lendABook(UserBase.at(0), BookBase);
+            lendABook(UserBase.at(userId), BookBase);
             break;
         }
     }

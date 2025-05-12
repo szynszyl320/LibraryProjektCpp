@@ -18,12 +18,17 @@ public:
 
 };
 
-int findBookByTitle(string title, vector<Book> &bookBase) {
+int findBookByTitle(vector<Book> &bookBase) {
+    string title;
+    cout << "Provide the title of the book you're looking for: ";
+    cin >> title;
     for(int i = 0; i < bookBase.max_size(); i++) {
         if(bookBase.at(i).title == title) {
-            return i;
+            cout << "The book was found under the number: " << i << "\n\n";
+            return 0;
         }
     }
+    cout << "No book found with that title./n";
     return -1;
 }
 
@@ -32,3 +37,4 @@ void listBooks(vector<Book> &bookBase) {
         cout << "|" << i+1 << "| |" << bookBase.at(i).title << "| |" << bookBase.at(i).author << "| |" << bookBase.at(i).genre << ((bookBase.at(i).isLent)? "| |not avaliable|\n" : "| |available|\n");
     }
 }
+

@@ -49,11 +49,22 @@ public:
         }
         return returnString;
     }
+
+    string stringifyLentBooks() {
+        string returnString;
+        for (int i = 0; i < this->lentBooks.size(); i++) {
+            returnString += " " + to_string(this->lentBooks.at(i));
+            cout << this->lentBooks.at(i);
+        }
+        return returnString;
+    }
+
 };
 
-int tryLogging(string login, string password, vector<User> &userBase) {
+int tryLogging(string login, string password, vector<User> &userBase, int &id) {
     for (int i = 0; i < userBase.max_size(); i++) {
         if(login == userBase.at(i).name && password == userBase.at(i).password) {
+            id = i;
             return 1;
         }
     }
