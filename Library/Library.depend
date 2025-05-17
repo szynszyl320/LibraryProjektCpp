@@ -32,3 +32,28 @@
 	<iostream>
 	<fstream>
 
+1747482034 source:f:\programming\libraryprojektcpp\libraryprojektcpp\library\main.cpp
+	<iostream>
+	<vector>
+	"subfolders/user.class.hpp"
+	"subfolders/fileManagment.class.hpp"
+
+1747481745 f:\programming\libraryprojektcpp\libraryprojektcpp\library\subfolders\user.class.hpp
+	<iostream>
+	<vector>
+	<string>
+	<sstream>
+	"book.class.hpp"
+
+1747467955 f:\programming\libraryprojektcpp\libraryprojektcpp\library\subfolders\book.class.hpp
+	<iostream>
+	<vector>
+
+1747481749 f:\programming\libraryprojektcpp\libraryprojektcpp\library\subfolders\filemanagment.class.hpp
+	<iostream>
+	<fstream>
+	<sstream>
+	<limits>
+	"book.class.hpp"
+	"user.class.hpp"
+

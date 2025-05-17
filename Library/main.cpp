@@ -5,23 +5,9 @@
 
 using namespace std;
 
-vector<Book> BookBase = {
-        Book("The Great Gatsby", "F. Scott Fitzgerald", "Fiction"),
-        Book("To Kill a Mockingbird", "Harper Lee", "Fiction"),
-        Book("1984", "George Orwell", "Dystopian"),
-        Book("Pride and Prejudice", "Jane Austen", "Romance"),
-        Book("The Hobbit", "J.R.R. Tolkien", "Fantasy"),
-        Book("The Catcher in the Rye", "J.D. Salinger", "Fiction"),
-        Book("Moby Dick", "Herman Melville", "Adventure"),
-        Book("War and Peace", "Leo Tolstoy", "Historical"),
-        Book("Hamlet", "William Shakespeare", "Tragedy"),
-        Book("The Odyssey", "Homer", "Epic")
-};
+vector<Book> BookBase = {};
 
-vector<User> UserBase = {
-    User("test", "zaq"),
-    User("tester", "zaq1@WSX")
-};
+vector<User> UserBase = {};
 
 void menuSettings() {
     cout << "Press x to close the program\nPress t to list books\nPress s to search for a specific book by title\nPress c to clear the window\nPress r to return a book\nPress l to lend a book by it's number\n>#: ";
@@ -30,39 +16,50 @@ void menuSettings() {
 int main()
 {
     char userEntry = 'p';
-    bool notLogged = false;
+    bool notLogged = true;
     string name, password;
-    int userId;
-    /**while(!notLogged) {
+    int userId = -1;
+    
+    loadFiles(BookBase, UserBase);
+    
+    while(notLogged) {
         cout << "Login or Sign up: (l for login s for signup): ";
-        cin>> userEntry;
+        cin >> userEntry;
         switch(userEntry) {
         case 'l':
             cout << "Give name: ";
-            cin>> name;
+            cin >> name;
             cout << "Give password: ";
-            cin>> password;
-            notLogged = tryLogging(name, password, UserBase, userId);
+            cin >> password;
+            if (tryLogging(name, password, UserBase, userId)) {
+                notLogged = false;
+            } else {
+                cout << "User not found or wrong password!" << endl;
+            }
             break;
-            cout << "User not found!";
         case 's':
             cout << "Give name: ";
-            cin>> name;
+            cin >> name;
             cout << "Give password: ";
-            cin>>password;
-            UserBase.push_back(User(name,password));
-            notLogged = true;
+            cin >> password;
+            UserBase.push_back(User(name, password));
+            userId = UserBase.size() - 1;
+            notLogged = false;
+            cout << "User registered and logged in!" << endl;
+            break;
+        default:
+            cout << "Invalid option. Please enter 'l' or 's'." << endl;
+            break;
         }
-    }**/
-    userId = 0;
+    }
+    
     while(true) {
         menuSettings();
-        cin>>userEntry;
+        cin >> userEntry;
         switch(userEntry) {
         case 'x':
             saveFiles(BookBase, UserBase);
             return 0;
-            break;
         case 'c':
             system("cls");
             break;
@@ -77,6 +74,9 @@ int main()
             break;
         case 'l':
             lendABook(UserBase.at(userId), BookBase);
+            break;
+        default:
+            cout << "Invalid option. Please try again." << endl;
             break;
         }
     }
