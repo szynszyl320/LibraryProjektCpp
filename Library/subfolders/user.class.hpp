@@ -22,6 +22,10 @@ public:
 
     int lendBook(vector<Book>& bookBase, int index) {
         if(index >= 0 && index < bookBase.size()) {
+            if(bookBase.at(index).isLent == false) {
+                cout << "The book is not available\n\n";
+                return -1;
+            }
             bookBase.at(index).isLent = true;
             this->lentBooks.push_back(index);
             this->readBooks.push_back(index);
@@ -49,6 +53,14 @@ public:
         return returnString;
     }
 
+    string listUserReadBooks(const vector<Book>& BookBase) {
+        string returnString;
+        for (int i = 0; i < this->readBooks.size(); i++) {
+            returnString += "|" + to_string(i+1) + "| |" + BookBase.at(this->readBooks.at(i)).title + "| |" + BookBase.at(this->readBooks.at(i)).author + "|\n";
+        }
+        return returnString;
+    }
+
     string stringifyBooks(string whichBook) {
         string returnString;
         if(whichBook == "lent") {
@@ -66,16 +78,17 @@ public:
     }
 
     vector<int> destringifyBooks(const string& str) {
-        vector<int> result;
+        vector<int> returnVector;
         istringstream iss(str);
         string token;
         while (getline(iss, token, ',')) {
             if (!token.empty()) {
-                result.push_back(stoi(token));
+                returnVector.push_back(stoi(token));
             }
         }
-        return result;
+        return returnVector;
     }
+
 };
 
 int tryLogging(string login, string password, vector<User>& userBase, int& id) {
@@ -91,7 +104,7 @@ int tryLogging(string login, string password, vector<User>& userBase, int& id) {
 int returnABook(User& user, vector<Book>& bookBase) {
     int bookNumber;
     cout << user.listUserBooks(bookBase);
-    cout << "Which book do you want to return?\n(give the number)>>";
+    cout << "Which book do you want to return?\n(Provide the number, 0 will leave the returning selection)>>";
     cin >> bookNumber;
     if(bookNumber == 0) {
         return 0;
@@ -109,4 +122,12 @@ void lendABook(User& user, vector<Book>& bookBase) {
         return;
    }
    user.lendBook(bookBase, bookIndex-1);
+}
+
+void printReadBooks(User& user, vector<Book>& bookBase) {
+    user.listUserReadBooks(bookBase);
+}
+
+void printLoanedBooks(User& user, vector<Book>& bookBase) {
+    user.listUserBooks(bookBase);
 }
