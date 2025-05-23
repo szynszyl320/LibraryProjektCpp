@@ -17,8 +17,8 @@ void menuSettings() {
 string getPassword() {
     string password;
     char ch;
-    while ((ch = _getch()) != '\r') { // Enter key
-        if (ch == '\b') { // Backspace
+    while ((ch = _getch()) != '\r') {
+        if (ch == '\b') {
             if (!password.empty()) {
                 password.pop_back();
                 cout << "\b \b";
@@ -38,9 +38,9 @@ int main()
     bool notLogged = true;
     string name, password;
     int userId = -1;
-    
+
     loadFiles(BookBase, UserBase);
-    
+
     while(true) {
         while(notLogged) {
             cout << "Login or Sign up: (l for login, s for signup, x for exit): ";
@@ -74,7 +74,7 @@ int main()
                 break;
             }
         }
-        
+
         while(true) {
             menuSettings();
             cin >> userEntry;

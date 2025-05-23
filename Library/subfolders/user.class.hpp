@@ -22,7 +22,7 @@ public:
 
     int lendBook(vector<Book>& bookBase, int index) {
         if(index >= 0 && index < bookBase.size()) {
-            if(bookBase.at(index).isLent == false) {
+            if(bookBase.at(index).isLent == true) {
                 cout << "The book is not available\n\n";
                 return -1;
             }
@@ -125,9 +125,9 @@ void lendABook(User& user, vector<Book>& bookBase) {
 }
 
 void printReadBooks(User& user, vector<Book>& bookBase) {
-    user.listUserReadBooks(bookBase);
+    cout << user.listUserReadBooks(bookBase) << endl;
 }
 
 void printLoanedBooks(User& user, vector<Book>& bookBase) {
-    user.listUserBooks(bookBase);
+    cout << user.listUserBooks(bookBase) << endl;
 }
