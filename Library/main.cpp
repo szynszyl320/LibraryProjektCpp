@@ -6,6 +6,8 @@
 
 using namespace std;
 
+//vector<Book> BookBase = {};
+
 vector<Book> BookBase = {};
 
 vector<User> UserBase = {};
@@ -17,8 +19,8 @@ void menuSettings() {
 string getPassword() {
     string password;
     char ch;
-    while ((ch = _getch()) != '\r') {
-        if (ch == '\b') {
+    while ((ch = _getch()) != '\r') { // Enter key
+        if (ch == '\b') { // Backspace
             if (!password.empty()) {
                 password.pop_back();
                 cout << "\b \b";

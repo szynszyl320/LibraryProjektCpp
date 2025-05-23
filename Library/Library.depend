@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1747986110 source:c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\main.cpp
+1747986487 source:c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\main.cpp
 	<iostream>
 	<vector>
 	<conio.h>
@@ -31,7 +31,7 @@
 	<vector>
 	"book.class.hpp"
 
-1747985990 c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\subfolders\filemanagment.class.hpp
+1747987169 c:\users\4b-2\desktop\kwsf\projektcpp\libraryprojektcpp\library\subfolders\filemanagment.class.hpp
 	<iostream>
 	<fstream>
 	<sstream>
